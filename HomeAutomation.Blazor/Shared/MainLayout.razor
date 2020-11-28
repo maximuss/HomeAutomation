@@ -1,0 +1,27 @@
+@using Microsoft.AspNetCore.Http
+@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
+<div class="w3-display-topmiddle">
+    <div class="topnav">
+        <div class="w3-container w3-theme-d3">
+            <div class="w3-bar w3-theme-d3">
+                <a href="#" class="w3-button">Dashboard</a>
+                <div class="w3-dropdown-hover">
+                    <button class="w3-button topnav-dropdown-center" >Indstillinger</button>
+                    <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                        <a href="/IkeaGateway" class="w3-bar-item w3-button w3-theme-l1">IKEA Gateway</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        @Body
+    </div>
+
+    <div class="footer">
+        <p class="w3-center">URL: <a href="@NavigationManager.BaseUri">@NavigationManager.BaseUri</a></p>
+    </div>
+</div>
+

@@ -1,0 +1,53 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the top navigation bar */
+.topnav {
+    overflow: hidden;
+}
+
+/* Style the topnav links */
+.topnav a {
+    float: left;
+    display: block;
+    color: whitesmoke;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+    background-color: #7d97a5 !important;
+    color: black;
+}
+
+/* Custom style of the navbar */
+.topnav-dropdown-center {
+    text-align: center;
+    padding: 14px 16px;
+}
+
+.topnav-background  {
+    background: #7d97a5;
+}
+
+/* Style the content */
+.content {
+    background-color: #ddd;
+    padding: 10px;
+}
+
+/* Style the footer */
+.footer {
+    background-color: #f1f1f1;
+    padding: 10px;
+}
+
