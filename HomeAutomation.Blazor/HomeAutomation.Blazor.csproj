@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HomeAutomation.Database\HomeAutomation.Database.csproj" />
+    <ProjectReference Include="..\HomeAutomation.IKEA\HomeAutomation.IKEA.csproj" />
   </ItemGroup>
 
 </Project>

@@ -4,8 +4,4 @@
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\HomeAutomation.Shared\HomeAutomation.Shared.csproj" />
-    </ItemGroup>
-
 </Project>

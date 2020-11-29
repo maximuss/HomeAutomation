@@ -2,6 +2,7 @@
 @using HomeAutomation.Blazor.Data.Model
 @using HomeAutomation.Database.Entity
 @using HomeAutomation.Database.Repository
+@using HomeAutomation.IKEA
 @inject GatewayRepository gatewayRepository;
 
 <div class="w3-card-4">
@@ -33,11 +34,7 @@
 
     void Submit()
     {
-        GatewayEntity gatewayEntity = new GatewayEntity();
-        gatewayEntity.Code = gatewayModel.Code;
-        gatewayEntity.Supplier = "IKEA";
-        gatewayEntity.Username = gatewayModel.Username;
-        gatewayEntity.IP = gatewayModel.IP;
-        gatewayRepository.Save(gatewayEntity);
+        Devices devices = new Devices();
+        devices.List();
     }
 }
