@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomation.Blazor", "HomeAutomation.Blazor\HomeAutomation.Blazor.csproj", "{187596A6-30D7-498A-937F-66C378B98B00}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomation.IKEA", "HomeAutomation.IKEA\HomeAutomation.IKEA.csproj", "{638A8E5E-C016-41FE-B00E-3B5A43A8F31B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeAutomation.Database", "HomeAutomation.Database\HomeAutomation.Database.csproj", "{59067253-8B10-4973-906B-2B9CF8B08409}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,13 @@ Global
 		{187596A6-30D7-498A-937F-66C378B98B00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{187596A6-30D7-498A-937F-66C378B98B00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{187596A6-30D7-498A-937F-66C378B98B00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{638A8E5E-C016-41FE-B00E-3B5A43A8F31B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{638A8E5E-C016-41FE-B00E-3B5A43A8F31B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{638A8E5E-C016-41FE-B00E-3B5A43A8F31B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{638A8E5E-C016-41FE-B00E-3B5A43A8F31B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59067253-8B10-4973-906B-2B9CF8B08409}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59067253-8B10-4973-906B-2B9CF8B08409}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59067253-8B10-4973-906B-2B9CF8B08409}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59067253-8B10-4973-906B-2B9CF8B08409}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

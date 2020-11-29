@@ -1,29 +1,43 @@
 @page "/IkeaGateway"
+@using HomeAutomation.Blazor.Data.Model
+@using HomeAutomation.Database.Entity
+@using HomeAutomation.Database.Repository
+@inject GatewayRepository gatewayRepository;
 
 <div class="w3-card-4">
     <div class="w3-container w3-theme">
         <h3>Ikea's Gateway indstillinger</h3>
     </div>
-    <div class="w3-container">
-        <div class="w3-margin-bottom">
-            <label>IP</label>
-            <input class="w3-input" type="text">
+    <EditForm Model="gatewayModel" OnSubmit="Submit">
+        <div class="w3-container">
+            <div class="w3-margin-bottom">
+                <label>IP</label>
+                <input @bind-value="gatewayModel.IP" class="w3-input" type="text">
+            </div>
+            <div class="w3-margin-bottom">
+                <label>Kode</label>
+                <input @bind-value="gatewayModel.Code" class="w3-input" type="text">
+            </div>
+            <div class="w3-margin-bottom">
+                <label>Brugernavn</label>
+                <input @bind-value="gatewayModel.Username" class="w3-input" type="text">
+            </div>
+            <div class="w3-margin-bottom">
+                <button class="w3-button w3-round-large w3-block w3-theme-d3">Gem oplysninger</button>    
+            </div>
         </div>
-        <div class="w3-margin-bottom">
-            <label>Kode</label>
-            <input class="w3-input" type="text">
-        </div>
-        <div class="w3-margin-bottom">
-            <label>Brugernavn</label>
-            <input class="w3-input" type="text">
-        </div>
-        <div class="w3-margin-bottom">
-            <button class="w3-button w3-round-large w3-block w3-theme-d3">Gem oplysninger</button>    
-        </div>
-        
-
-    </div>
+    </EditForm>
 </div>
 @code {
-    
+    IkeaGatewayModel gatewayModel = new IkeaGatewayModel();
+
+    void Submit()
+    {
+        GatewayEntity gatewayEntity = new GatewayEntity();
+        gatewayEntity.Code = gatewayModel.Code;
+        gatewayEntity.Supplier = "IKEA";
+        gatewayEntity.Username = gatewayModel.Username;
+        gatewayEntity.IP = gatewayModel.IP;
+        gatewayRepository.Save(gatewayEntity);
+    }
 }

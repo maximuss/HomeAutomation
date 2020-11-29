@@ -1,5 +1,9 @@
+using HomeAutomation.Blazor.Data.Services;
+using HomeAutomation.Database;
+using HomeAutomation.Database.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -21,6 +25,7 @@ namespace HomeAutomation.Blazor
         {
             AddNetServices(services);
             AddServices(services);
+            AddRepositoryServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,10 +58,18 @@ namespace HomeAutomation.Blazor
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            // services.AddDbContextFactory<HomeAutomationContext>(c => c.UseSqlite("Data Source=homeautomation.db"));
+            services.AddDbContextFactory<HomeAutomationContext>();
         }
         private void AddServices(IServiceCollection services)
         {
+            services.AddScoped<IkeaGatewayService>();
             
+        }
+
+        private void AddRepositoryServices(IServiceCollection services)
+        {
+            services.AddScoped<GatewayRepository>();
         }
     }
 }
