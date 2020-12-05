@@ -5,7 +5,17 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\HomeAutomation.Database\HomeAutomation.Database.csproj" />
       <ProjectReference Include="..\HomeAutomation.Shared\HomeAutomation.Shared.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
+      <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="JSON" />
     </ItemGroup>
 
 </Project>

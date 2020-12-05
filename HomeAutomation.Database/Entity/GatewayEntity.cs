@@ -12,5 +12,6 @@ namespace HomeAutomation.Database.Entity
         public string Code { get; set; }
         public string IP { get; set; }
         public string Username { get; set; }
+        public string GatewayVersion { get; set; }
     }
 }

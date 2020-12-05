@@ -14,21 +14,28 @@ namespace HomeAutomation.Database.Repository
             this.contextFactory = contextFactory;
         }
         
-        public Task Save(GatewayEntity gatewayEntity)
+        public async Task SaveOrUpdate(GatewayEntity gatewayEntity)
         {
             try
             {
                 using (var context = contextFactory.CreateDbContext())
                 {
-                    context.GatewayEntity.Add(gatewayEntity);
-                    context.SaveChangesAsync();
+                    GatewayEntity entity = await context.GatewayEntity.SingleOrDefaultAsync(c => c.Id == gatewayEntity.Id);
+                    if (entity == null)
+                    {
+                        context.GatewayEntity.Add(gatewayEntity);
+                    }
+                    else
+                    {
+                        context.GatewayEntity.Attach(gatewayEntity);
+                    }
+                    await context.SaveChangesAsync();
                 }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
             }
-            return Task.CompletedTask;
         }
     }
 }

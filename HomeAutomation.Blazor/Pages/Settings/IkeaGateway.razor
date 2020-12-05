@@ -1,9 +1,9 @@
 @page "/IkeaGateway"
 @using HomeAutomation.Blazor.Data.Model
-@using HomeAutomation.Database.Entity
-@using HomeAutomation.Database.Repository
-@using HomeAutomation.IKEA
-@inject GatewayRepository gatewayRepository;
+@using HomeAutomation.IKEA.Model
+@using HomeAutomation.IKEA.Response
+@using HomeAutomation.IKEA.Services
+@inject IkeaGatewayService ikeaGatewayService
 
 <div class="w3-card-4">
     <div class="w3-container w3-theme">
@@ -28,13 +28,35 @@
             </div>
         </div>
     </EditForm>
+    @if (showError)
+    {
+        <div class="w3-center w3-text-red">@errorMessage</div>
+    }
+    
+    @if (showResult)
+    {
+        <div class="w3-center w3-text-green">Key: @preSharedKeyModel.PresharedKey</div>
+        <div class="w3-center w3-text-green">Version: @preSharedKeyModel.GatewayVersion</div>
+    }
 </div>
 @code {
+    private bool showError = false;
+    private bool showResult = false;
+    private string errorMessage = "";
     IkeaGatewayModel gatewayModel = new IkeaGatewayModel();
-
+    PresharedKeyModel preSharedKeyModel = new PresharedKeyModel();
+    
     void Submit()
     {
-        Devices devices = new Devices();
-        devices.List();
+        preSharedKeyModel = ikeaGatewayService.SavePreSharedKey(gatewayModel.Username,gatewayModel.IP,gatewayModel.Code);
+        if (preSharedKeyModel == null)
+        {
+            showError = true;
+            errorMessage = "Ingen key fra IKEA Gateway, tjek dine data og prøv igen.";
+        }
+        else
+        {
+            showResult = true;
+        }
     }
 }

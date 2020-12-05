@@ -1,6 +1,8 @@
-using HomeAutomation.Blazor.Data.Services;
+using System;
+using AutoMapper;
 using HomeAutomation.Database;
 using HomeAutomation.Database.Repository;
+using HomeAutomation.IKEA.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -60,6 +62,7 @@ namespace HomeAutomation.Blazor
             services.AddServerSideBlazor();
             // services.AddDbContextFactory<HomeAutomationContext>(c => c.UseSqlite("Data Source=homeautomation.db"));
             services.AddDbContextFactory<HomeAutomationContext>();
+            services.AddAutoMapper(typeof(Startup));
         }
         private void AddServices(IServiceCollection services)
         {
