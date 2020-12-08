@@ -1,0 +1,25 @@
+using System;
+using HomeAutomation.Blazor.Data.Model;
+using HomeAutomation.Blazor.Services;
+using HomeAutomation.IKEA.Model;
+
+namespace HomeAutomation.Blazor
+{
+    public partial class IkeaGateway
+    {
+    private bool showError = false;
+    private bool showResult = false;
+    private string errorMessage = "";
+    private string coapClient = "";
+    private string resultClass = "";
+    IkeaGatewayModel gatewayModel = new IkeaGatewayModel();
+    PresharedKeyModel preSharedKeyModel = new PresharedKeyModel();
+    
+    void OnClick()
+    {
+        resultClass = "w3-theme-d1";
+        GenerateAuthenciateJson generateAuthenciateJson =new GenerateAuthenciateJson();
+        coapClient = generateAuthenciateJson.Get(gatewayModel);
+    }
+    }
+}
