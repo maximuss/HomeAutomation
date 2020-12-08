@@ -1,5 +1,6 @@
 @page "/IkeaGateway"
 @using HomeAutomation.Blazor.Data.Model
+@using HomeAutomation.Blazor.Services
 @using HomeAutomation.IKEA.Model
 @using HomeAutomation.IKEA.Response
 @using HomeAutomation.IKEA.Services
@@ -9,11 +10,10 @@
     <div class="w3-container w3-theme">
         <h3>Ikea's Gateway indstillinger</h3>
     </div>
-    <EditForm Model="gatewayModel" OnSubmit="Submit">
         <div class="w3-container">
             <div class="w3-margin-bottom">
                 <label>IP</label>
-                <input @bind-value="gatewayModel.IP" class="w3-input" type="text">
+                <input @bind-value="gatewayModel.IP" onfocusout="FocusOut" class="w3-input" type="text">
             </div>
             <div class="w3-margin-bottom">
                 <label>Kode</label>
@@ -24,10 +24,26 @@
                 <input @bind-value="gatewayModel.Username" class="w3-input" type="text">
             </div>
             <div class="w3-margin-bottom">
-                <button class="w3-button w3-round-large w3-block w3-theme-d3">Gem oplysninger</button>    
+                <button class="w3-button w3-round-large w3-block w3-theme-d3" @onclick="OnClick">Coap-client auth. command</button>    
             </div>
+            <div class="w3-margin @resultClass w3-padding">
+                @coapClient
+            </div>
+            <div>
+                Udfylde alle felter og klik på "Coap-client auth. command", den kommando som står ovenover skal afvikles i en terminal.
+                <br/>Hvis der ingen fejl er så får du et svar resultat som minder om dette her:
+                <p class="coap-response">v:1 t:CON c:POST i:9e17 {} [ ]<br/>
+                    {"9091":"eeJisqXcHN0p9Bbi","9029":"1.12.0031"}
+                </p>
+                Den del som skal bruges er det som står mellem og incl: {...} på den <bold>nederste</bold> linie!<br/>
+                Det skal bruges på næste side!
+                <br/>
+            </div>
+            <div class="w3-center w3-margin-bottom">
+                <a href="/Ikeagatewy/Save">Næste >></a>
+            </div>
+
         </div>
-    </EditForm>
     @if (showError)
     {
         <div class="w3-center w3-text-red">@errorMessage</div>
@@ -43,20 +59,28 @@
     private bool showError = false;
     private bool showResult = false;
     private string errorMessage = "";
+    private string coapClient = "";
+    private string resultClass = "";
     IkeaGatewayModel gatewayModel = new IkeaGatewayModel();
     PresharedKeyModel preSharedKeyModel = new PresharedKeyModel();
     
-    void Submit()
+    void OnClick()
     {
-        preSharedKeyModel = ikeaGatewayService.SavePreSharedKey(gatewayModel.Username,gatewayModel.IP,gatewayModel.Code);
-        if (preSharedKeyModel == null)
-        {
-            showError = true;
-            errorMessage = "Ingen key fra IKEA Gateway, tjek dine data og prøv igen.";
-        }
-        else
-        {
-            showResult = true;
-        }
+        resultClass = "w3-theme-d1";
+        GenerateAuthenciateJson generateAuthenciateJson =new GenerateAuthenciateJson();
+        coapClient = generateAuthenciateJson.Get(gatewayModel);
     }
+    // void Submit()
+    // {
+    //     preSharedKeyModel = ikeaGatewayService.SaveIkeaGatewayInfo(gatewayModel.Username,gatewayModel.IP,gatewayModel.Code,gatewayModel.DisplayName);
+    //     if (string.IsNullOrEmpty(preSharedKeyModel.ErrorMessage))
+    //     {
+    //         showError = true;
+    //         errorMessage = "Ingen key fra IKEA Gateway, tjek dine data og prøv igen.";
+    //     }
+    //     else
+    //     {
+    //         showResult = true;
+    //     }
+    // }
 }

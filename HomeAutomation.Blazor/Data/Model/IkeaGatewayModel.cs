@@ -5,5 +5,6 @@ namespace HomeAutomation.Blazor.Data.Model
         public string IP { get; set; }
         public string Code { get; set; }
         public string Username { get; set; }
+        public string DisplayName { get; set; }
     }
 }

@@ -4,5 +4,6 @@ namespace HomeAutomation.IKEA.Model
     {
         public string PresharedKey { get; set; } 
         public string GatewayVersion { get; set; } 
+        public string ErrorMessage { get; set; }
     }
 }

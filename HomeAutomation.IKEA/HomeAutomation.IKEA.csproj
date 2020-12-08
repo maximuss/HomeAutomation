@@ -16,6 +16,7 @@
 
     <ItemGroup>
       <Folder Include="JSON" />
+      <Folder Include="JSON\Request" />
     </ItemGroup>
 
 </Project>

@@ -16,25 +16,18 @@ namespace HomeAutomation.Database.Repository
         
         public async Task SaveOrUpdate(GatewayEntity gatewayEntity)
         {
-            try
+            using (var context = contextFactory.CreateDbContext())
             {
-                using (var context = contextFactory.CreateDbContext())
+                GatewayEntity entity = await context.GatewayEntity.SingleOrDefaultAsync(c => c.Id == gatewayEntity.Id);
+                if (entity == null)
                 {
-                    GatewayEntity entity = await context.GatewayEntity.SingleOrDefaultAsync(c => c.Id == gatewayEntity.Id);
-                    if (entity == null)
-                    {
-                        context.GatewayEntity.Add(gatewayEntity);
-                    }
-                    else
-                    {
-                        context.GatewayEntity.Attach(gatewayEntity);
-                    }
-                    await context.SaveChangesAsync();
+                    context.GatewayEntity.Add(gatewayEntity);
                 }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
+                else
+                {
+                    context.GatewayEntity.Attach(gatewayEntity);
+                }
+                await context.SaveChangesAsync();
             }
         }
     }
